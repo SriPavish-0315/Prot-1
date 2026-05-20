@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sri Pavish S | Portfolio</title>
+    <meta name="description" content="Portfolio of Sri Pavish S, Full Stack Developer and B.Tech IT Student.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<style>
+    :root {
+    --bg-color: #050505;
+    --text-primary: #ffffff;
+    --text-secondary: #a0a0a0;
+    --accent-primary: #00f2fe;
+    --accent-secondary: #4facfe;
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-hover: rgba(255, 255, 255, 0.08);
+    --font-main: 'Outfit', sans-serif;
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Background Shapes for Glassmorphism effect */
+.bg-shapes {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.shape {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.5;
+    animation: float 20s infinite alternate;
+}
+
+.shape-1 {
+    top: -10%;
+    left: -10%;
+    width: 40vw;
+    height: 40vw;
+    background: radial-gradient(circle, rgba(79,172,254,0.3) 0%, rgba(0,242,254,0) 70%);
+}
+
+.shape-2 {
+    bottom: -20%;
+    right: -10%;
+    width: 50vw;
+    height: 50vw;
+    background: radial-gradient(circle, rgba(138,43,226,0.2) 0%, rgba(79,172,254,0) 70%);
+    animation-delay: -5s;
+}
+
+.shape-3 {
+    top: 40%;
+    left: 50%;
+    width: 30vw;
+    height: 30vw;
+    background: radial-gradient(circle, rgba(0,242,254,0.15) 0%, rgba(0,0,0,0) 70%);
+    animation-delay: -10s;
+}
+
+@keyframes float {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    100% { transform: translate(50px, 50px) rotate(20deg); }
+}
+
+/* Typography & Utilities */
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition);
+}
+
+ul {
+    list-style: none;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.section-title span {
+    color: var(--accent-primary);
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.mt-4 { margin-top: 2rem; }
+
+/* Glass Panel Utility */
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 2.5rem;
+    transition: var(--transition);
+}
+
+.glass-panel:hover {
+    background: var(--glass-hover);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1.5rem 0;
+    z-index: 1000;
+    transition: var(--transition);
+}
+
+.navbar.scrolled {
+    background: rgba(5, 5, 5, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--glass-border);
+    padding: 1rem 0;
+}
+
+.nav-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.logo span {
+    color: var(--accent-primary);
+}
+
+.nav-links {
+    display: flex;
+    gap: 2.5rem;
+}
+
+.nav-links a {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+    transition: var(--transition);
+}
+
+.nav-links a:hover, .nav-links a.active {
+    color: var(--text-primary);
+}
+
+.nav-links a:hover::after, .nav-links a.active::after {
+    width: 100%;
+}
+
+.menu-btn {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-primary);
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+    text-align: center;
+}
+
+.btn-primary {
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+    color: #000;
+    border: none;
+    box-shadow: 0 5px 15px rgba(0, 242, 254, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 242, 254, 0.5);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(5px);
+}
+
+.btn-secondary:hover {
+    background: var(--glass-hover);
+    border-color: var(--accent-primary);
+    transform: translateY(-3px);
+}
+
+/* Main Layout */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+section {
+    min-height: 100vh;
+    padding: 8rem 0 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Hero Section */
+.hero {
+    align-items: flex-start;
+}
+
+.hero-content {
+    max-width: 800px;
+}
+
+.greeting {
+    font-size: 1.2rem;
+    color: var(--accent-primary);
+    font-weight: 500;
+    margin-bottom: 1rem;
+    display: block;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.name {
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    background: linear-gradient(180deg, #ffffff, #a0a0a0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.role {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+}
+
+.summary {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    max-width: 650px;
+    margin-bottom: 2.5rem;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.social-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+}
+
+.social-links a:hover {
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    color: #000;
+    border-color: transparent;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 242, 254, 0.4);
+}
+
+/* About Section */
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.about-grid h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    color: var(--accent-primary);
+}
+
+.timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    border-left: 2px solid var(--glass-border);
+    padding-left: 1.5rem;
+    margin-left: 0.5rem;
+}
+
+.timeline-item {
+    position: relative;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1.85rem;
+    top: 0.3rem;
+    width: 12px;
+    height: 12px;
+    background: var(--bg-color);
+    border: 2px solid var(--accent-primary);
+    border-radius: 50%;
+}
+
+.timeline-item h4 {
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    margin-bottom: 0.2rem;
+}
+
+.timeline-item h5 {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.timeline-item .date, .timeline-item .score {
+    font-size: 0.9rem;
+    color: var(--accent-secondary);
+    font-weight: 600;
+}
+
+.timeline-item .desc {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin-top: 0.5rem;
+}
+
+.skills-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+
+.skills-tags span {
+    padding: 0.5rem 1.2rem;
+    background: rgba(0, 242, 254, 0.1);
+    border: 1px solid rgba(0, 242, 254, 0.2);
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    transition: var(--transition);
+}
+
+.skills-tags span:hover {
+    background: rgba(0, 242, 254, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Projects Section */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.project-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.highlight-project {
+    border-color: rgba(0, 242, 254, 0.3);
+    box-shadow: inset 0 0 20px rgba(0, 242, 254, 0.05);
+}
+
+.project-content h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.project-role {
+    font-size: 0.9rem;
+    color: var(--accent-primary);
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.project-desc {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+}
+
+.project-features {
+    padding-left: 1.2rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.project-features li {
+    margin-bottom: 0.5rem;
+    position: relative;
+}
+
+.project-features li::before {
+    content: '\f101';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    left: -1.2rem;
+    color: var(--accent-secondary);
+    font-size: 0.8rem;
+    top: 2px;
+}
+
+/* Contact Section */
+.contact-container {
+    max-width: 800px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.icon-box {
+    width: 60px;
+    height: 60px;
+    min-width: 60px;
+    border-radius: 50%;
+    background: rgba(0, 242, 254, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: var(--accent-primary);
+    border: 1px solid rgba(0, 242, 254, 0.2);
+}
+
+.contact-item h4 {
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    margin-bottom: 0.2rem;
+}
+
+.contact-item p {
+    color: var(--text-secondary);
+}
+
+.contact-item a {
+    color: var(--text-secondary);
+}
+
+.contact-item a:hover {
+    color: var(--accent-primary);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 2rem;
+    margin-top: 4rem;
+    border-top: 1px solid var(--glass-border);
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    section {
+        padding: 6rem 0 3rem;
+    }
+
+    .menu-btn {
+        display: block;
+        z-index: 1001;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 100vh;
+        background: rgba(5, 5, 5, 0.95);
+        backdrop-filter: blur(15px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: var(--transition);
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+    
+    .nav-links li {
+        margin: 1.5rem 0;
+    }
+    
+    .nav-links a {
+        font-size: 1.5rem;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .btn {
+        width: 100%;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+</style>
+
+
+<body>
+    <div class="bg-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="#" class="logo">Pavish<span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="menu-btn"><i class="fas fa-bars"></i></div>
+        </div>
+    </nav>
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <span class="greeting">Hello, I'm</span>
+                <h1 class="name">Sri Pavish S</h1>
+                <h2 class="role">Full Stack Developer</h2>
+                <p class="summary">
+                    Motivated and passionate first-year B.Tech Information Technology student with a strong interest in Full Stack Development, web technologies, and software engineering. Eager to contribute innovative ideas, improve problem-solving abilities, and build impactful web applications.
+                </p>
+                <div class="hero-actions">
+                    <a href="#projects" class="btn btn-primary">View Work</a>
+                    <a href="#contact" class="btn btn-secondary">Contact Me</a>
+                </div>
+                <div class="social-links">
+                    <a href="https://github.com/SriPavish-0315" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/sri-pavish-s-96687136b/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="mailto:sripavishsubbannan@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </section>
+        <!-- About Section -->
+        <section id="about" class="about">
+            <h2 class="section-title">About <span>Me</span></h2>
+            
+            <div class="about-grid">
+                <div class="education-card glass-panel">
+                    <h3><i class="fas fa-graduation-cap"></i> Education</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <h4>B.Tech Information Technology</h4>
+                            <h5>V. S. B. Engineering College, Karur</h5>
+                            <p class="date">First Year Student</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h4>12th Grade (Higher Secondary)</h4>
+                            <h5>Bharani Prak Matric Hr. Sec. School, Karur</h5>
+                            <p class="score">Score: 86% | Cut-off: 175</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h4>10th Grade (SSLC)</h4>
+                            <h5>Bharani Prak Matric Hr. Sec. School, Karur</h5>
+                            <p class="score">Score: 78%</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="experience-card glass-panel">
+                    <h3><i class="fas fa-briefcase"></i> Experience & Certification</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <h4>Full Stack Development Internship</h4>
+                            <h5>Novitech</h5>
+                            <p class="desc">Gained hands-on experience in HTML, CSS, JavaScript, frontend design, responsive web development, backend integration, and full-stack application development.</p>
+                        </div>
+                    </div>
+                    <h3 class="mt-4"><i class="fas fa-bolt"></i> Strengths</h3>
+                    <div class="skills-tags">
+                        <span>Full Stack Development</span>
+                        <span>Problem Solving</span>
+                        <span>Teamwork</span>
+                        <span>Adaptability</span>
+                        <span>Quick Learner</span>
+                        <span>Web Technologies</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Projects Section -->
+        <section id="projects" class="projects">
+            <h2 class="section-title">My <span>Projects</span></h2>
+            
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card glass-panel">
+                    <div class="project-content">
+                        <h3>CivicFix (Crowd-Based Civic Management System)</h3>
+                        <p class="project-role">Full-Stack Web Application</p>
+                        <p class="project-desc">Developed a full-stack civic issue reporting and management platform allowing citizens to report public issues like road damage, garbage, and streetlights.</p>
+                        <ul class="project-features">
+                            <li>Separate dashboards for Citizens, Admins, and Workers</li>
+                            <li>Authentication, issue tracking, status updates, and notifications</li>
+                            <li>Responsive UI and real-time management concepts</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Project 2 -->
+                <div class="project-card glass-panel">
+                    <div class="project-content">
+                        <h3>Spotify Clone</h3>
+                        <p class="project-role">Frontend Web Development</p>
+                        <p class="project-desc">Developed a responsive Spotify-inspired music streaming website using frontend technologies.</p>
+                        <ul class="project-features">
+                            <li>Modern UI design and responsive layouts</li>
+                            <li>Navigation features</li>
+                            <li>Interactive user experience concepts</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Project 3 -->
+                <div class="project-card glass-panel">
+                    <div class="project-content">
+                        <h3>Frontend Development Projects</h3>
+                        <p class="project-role">Web Development</p>
+                        <p class="project-desc">Developed 4 frontend mini-projects using HTML, CSS, JavaScript, and responsive web design concepts.</p>
+                        <ul class="project-features">
+                            <li>Responsive landing pages</li>
+                            <li>Relative webpages</li>
+                            <li>Consultancy website interfaces with modern layouts</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Project 4 (Portfolio) -->
+                <div class="project-card glass-panel highlight-project">
+                    <div class="project-content">
+                        <h3>Personal Portfolio Website</h3>
+                        <p class="project-role">Frontend Web Development</p>
+                        <p class="project-desc">Designed and developed my own personal portfolio web page to showcase my projects, skills, and resume.</p>
+                        <ul class="project-features">
+                            <li>Modern, responsive design with glassmorphism</li>
+                            <li>Interactive elements and smooth animations</li>
+                            <li>Built with HTML, CSS, and JavaScript</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Contact Section -->
+        <section id="contact" class="contact">
+            <h2 class="section-title">Get in <span>Touch</span></h2>
+            
+            <div class="contact-container glass-panel">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="icon-box"><i class="fas fa-envelope"></i></div>
+                        <div>
+                            <h4>Email</h4>
+                            <p><a href="mailto:sripavishsubbannan@gmail.com">sripavishsubbannan@gmail.com</a></p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="icon-box"><i class="fas fa-phone-alt"></i></div>
+                        <div>
+                            <h4>Phone</h4>
+                            <p><a href="tel:+917904977390">+91 7904977390</a></p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="icon-box"><i class="fas fa-map-marker-alt"></i></div>
+                        <div>
+                            <h4>Address</h4>
+                            <p>19, Naveen Nagar 1st cross, V. V. G Nagar, Vengamedu, Karur – 639006</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; <span id="year"></span> Sri Pavish S. All rights reserved.</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
